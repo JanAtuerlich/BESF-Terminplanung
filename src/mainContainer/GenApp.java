@@ -53,6 +53,16 @@ public class GenApp {
 	public int[][] getPool() {
 		return pool;
 	}
+	public String getBestSeries(){	
+		
+		String besteSerie = "";
+		
+			for(int m = 0; m < maxgen; m++) {
+				besteSerie +=  pool[m][bestleb];
+			}
+		
+		return besteSerie;
+	}
 	
 	/********************************************************************
 	*		   Setter-Funktionen
@@ -301,57 +311,7 @@ public class GenApp {
 			find2worst();
 			paarung();
 			mutation();
-		}
-		
+		}	
 	}
-	
-	/********************************************************************
-	*		Funktion ausgabe
-	*
-	********************************************************************/
-	
-	
-//	public void ausgabe(int check) {
-		/**gibt die Terminserien wieder**/
-		/*for(int i = 0; i < MAXLEB; i++) {
-			System.out.println("");
-			for (int j = 0; j < maxgen; j++) {
-				System.out.print(pool[j][i]);
-			}
-		}*/
-		/** gibt die Strafpunkte pro Generation wieder **/
-		/*for(int i = 0; i < MAXLEB; i++) {
-			System.out.println(i + 1);
-			for (int j = 0; j < maxgen + 1; j++) {
-				if (j == maxgen) System.out.println( "  "+  pool[j][i]);
-			}
-		}*/
-		
-		/** Berechnungen für die Konsolenausgabe **/
-		/*if (check != -1) {
-			int ausgabeOptimum = check + 1;
-			System.out.println("\nOptimum: " + ausgabeOptimum);
-			System.out.println("Termine:");
-			for(int k = 0; k < maxgen; k++) {
-				System.out.println("  " + pool[k][check]);
-			}
-		} else {
-			if(pool[maxgen][bestleb] < 2) {
-				int ausgabeBestesMitEinemStrafpunkt = bestleb + 1;
-				System.out.println("\nDas Beste: (mit einem Strafpunkt)" + ausgabeBestesMitEinemStrafpunkt);
-			}
-			else {
-				int ausgabeBestesMitMehrAlsEinemStrafpunkt = bestleb+1;
-				int ausgabeAnzahlStrafpunktedesBestenMitMehrAlsEinemStrafpunkt = pool[maxgen][bestleb]; 
-				System.out.println("\nDas Beste: " + ausgabeBestesMitMehrAlsEinemStrafpunkt + 
-						" (mit " + ausgabeAnzahlStrafpunktedesBestenMitMehrAlsEinemStrafpunkt + " Strafpunkten)");
-			}
-			System.out.println("Termine:");
-			for(int m = 0; m < maxgen; m++) {
-				System.out.println("  "+  pool[m][bestleb]) ;
-			}
-		}
-		return;*/
-//	}
 	
 }
