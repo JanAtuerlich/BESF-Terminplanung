@@ -26,6 +26,21 @@ public class Genentische_Terminplanung {
 										man Spalten und Zeilen nicht wie oben anordnen **/
 
 	/********************************************************************
+	*		   Setter-Funktionen
+	* GUI ruft diese Methoden auf, um Rahmenbedingungen zu setzen
+	********************************************************************/
+	
+	public static void setMaxgen(String uebergabe){
+		maxgen = Integer.parseInt(uebergabe);
+	}
+	public static void setAnz_pruef(String uebergabe){
+		anz_pruef = Integer.parseInt(uebergabe);
+	}
+	public static void setMaxgenera(String uebergabe){
+		maxgenera = Long.parseLong(uebergabe);
+	}
+	
+	/********************************************************************
 	*		   Funktion init
 	* Genpool mit 0 vorbelegen; Variablen vorbesetzen
 	********************************************************************/
