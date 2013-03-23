@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JScrollBar;
 import java.awt.Button;
@@ -12,10 +13,14 @@ import javax.swing.SpringLayout;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.Arrays;
+
+import javax.swing.JTable;
+import javax.swing.JButton;
 
 public class GUI {
 
-	private JFrame frame;
+	public JFrame frame;
 	private JTextField textField;
 	private JLabel lblNewLabel_1;
 	private JTextField textField_1;
@@ -24,7 +29,11 @@ public class GUI {
 	private Button button;
 	private JLabel lblErgebnis;
 	private JLabel lblNewLabel_4;
-
+	private GenApp evolution;
+	private JLabel lblNewLabel_5;
+	private JLabel lblNewLabel_6;
+	private JLabel lblTermine;
+	private JLabel lblNewLabel_7;
 	/**
 	 * Launch the application.
 	 */
@@ -104,9 +113,17 @@ public class GUI {
 		button = new Button("Start");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				setMaxgen(textField.getText());
-				setAnz_pruef(textField_1.getText());
-				setMaxgenera(textField_2.getText());
+				
+				evolution = new GenApp();
+				evolution.setMaxgen(textField.getText());
+				evolution.setAnz_pruef(textField_1.getText());
+				evolution.setMaxgenera(textField_2.getText());	
+				evolution.berechnen();
+	
+				lblNewLabel_4.setText(String.valueOf(evolution.getBestleb()+1));
+				lblNewLabel_6.setText(String.valueOf(evolution.getPool()[evolution.getMaxgen()][evolution.getBestleb()]));
+				lblNewLabel_7.setText(evolution.getBestSeries());
+
 			}
 		});
 		springLayout.putConstraint(SpringLayout.NORTH, button, 134, SpringLayout.NORTH, frame.getContentPane());
@@ -114,7 +131,7 @@ public class GUI {
 		springLayout.putConstraint(SpringLayout.EAST, button, 378, SpringLayout.WEST, frame.getContentPane());
 		frame.getContentPane().add(button);
 		
-		lblErgebnis = new JLabel("Ergebnis:");
+		lblErgebnis = new JLabel("Beste Terminserie:");
 		springLayout.putConstraint(SpringLayout.NORTH, lblErgebnis, 39, SpringLayout.SOUTH, lblNewLabel_2);
 		springLayout.putConstraint(SpringLayout.WEST, lblErgebnis, 0, SpringLayout.WEST, lblNewLabel_3);
 		frame.getContentPane().add(lblErgebnis);
@@ -122,6 +139,73 @@ public class GUI {
 		lblNewLabel_4 = new JLabel();
 		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_4, 0, SpringLayout.NORTH, lblErgebnis);
 		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_4, 6, SpringLayout.EAST, lblErgebnis);
+		lblNewLabel_4.setText("New Label");
 		frame.getContentPane().add(lblNewLabel_4);
+		
+		JButton btnNewButton = new JButton("Tabelle");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				int[][] pool = evolution.getPool();
+				String[][] array_str = new String[evolution.getMaxgen()+3][12];	
+				
+				for(int i = 0; i < 12; i++) {
+				System.out.println("");
+				for (int j = 0; j < evolution.getMaxgen()+1; j++) {	
+					if(j==0){
+						int a=i+1;
+						array_str[j][i] = "Terminserie " + a;
+					}
+					array_str[j+1][i] = String.valueOf(pool[j][i]);
+					System.out.print(array_str[j+1][i]);
+				}
+				}
+				
+			    //Swap Array: This code assumes all rows have same number of columns
+			    String[][] pivot = new String[array_str[0].length][];
+			    for (int row = 0; row < array_str[0].length; row++)
+			        pivot[row] = new String[array_str.length];
+
+			    for (int row = 0; row < array_str.length; row++)
+			        for (int col = 0; col < array_str[row].length; col++)
+			            pivot[col][row] = array_str[row][col];
+				
+			    
+			    
+				String fields[] = new String[evolution.getMaxgen()+2];
+				fields[0]= "";
+				for (int i = 1; i < fields.length; i++) {
+					fields[i] = "Tag " + i;
+				}
+				fields[fields.length-1]= "Strafpunkte";
+						
+				JTableUI myExample = new JTableUI( "Terminserien im Überblick", fields, pivot);
+
+			}
+		});
+		springLayout.putConstraint(SpringLayout.WEST, btnNewButton, 0, SpringLayout.WEST, lblNewLabel_3);
+		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton, -10, SpringLayout.SOUTH, frame.getContentPane());
+		frame.getContentPane().add(btnNewButton);
+		
+		lblNewLabel_5 = new JLabel("Strafpunkte:");
+		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_5, 6, SpringLayout.SOUTH, lblErgebnis);
+		springLayout.putConstraint(SpringLayout.EAST, lblNewLabel_5, 0, SpringLayout.EAST, lblErgebnis);
+		frame.getContentPane().add(lblNewLabel_5);
+		
+		lblNewLabel_6 = new JLabel("New label");
+		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_6, 0, SpringLayout.NORTH, lblNewLabel_5);
+		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_6, 6, SpringLayout.EAST, lblNewLabel_5);
+		frame.getContentPane().add(lblNewLabel_6);
+		
+		lblTermine = new JLabel("Terminverteilung:");
+		springLayout.putConstraint(SpringLayout.NORTH, lblTermine, 6, SpringLayout.SOUTH, lblNewLabel_5);
+		springLayout.putConstraint(SpringLayout.EAST, lblTermine, 0, SpringLayout.EAST, lblErgebnis);
+		frame.getContentPane().add(lblTermine);
+		
+		lblNewLabel_7 = new JLabel("New label");
+		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_7, 0, SpringLayout.WEST, lblNewLabel_4);
+		springLayout.putConstraint(SpringLayout.SOUTH, lblNewLabel_7, 0, SpringLayout.SOUTH, lblTermine);
+		frame.getContentPane().add(lblNewLabel_7);
+		
 	}
 }
