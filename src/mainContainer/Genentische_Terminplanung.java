@@ -294,7 +294,7 @@ public class Genentische_Terminplanung {
 			int ausgabeOptimum = check + 1;
 			System.out.println("\nOptimum: " + ausgabeOptimum);
 			System.out.println("Termine:");
-			for(int k=0; k < maxgen; k++) {
+			for(int k = 0; k < maxgen; k++) {
 				System.out.println("  " + pool[k][check]);
 			}
 		} else {
@@ -309,7 +309,7 @@ public class Genentische_Terminplanung {
 						" (mit " + ausgabeAnzahlStrafpunktedesBestenMitMehrAlsEinemStrafpunkt + " Strafpunkten)");
 			}
 			System.out.println("Termine:");
-			for(int m=0; m < maxgen; m++) {
+			for(int m = 0; m < maxgen; m++) {
 				System.out.println("  "+  pool[m][bestleb]) ;
 			}
 		}
