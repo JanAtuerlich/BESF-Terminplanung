@@ -58,7 +58,7 @@ public class GenApp {
 		String besteSerie = "";
 		
 			for(int m = 0; m < maxgen; m++) {
-				besteSerie +=  pool[m][bestleb];
+				besteSerie +=  pool[m][bestleb] + " ";
 			}
 		
 		return besteSerie;
