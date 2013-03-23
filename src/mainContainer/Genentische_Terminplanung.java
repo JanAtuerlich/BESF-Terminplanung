@@ -25,8 +25,12 @@ public class Genentische_Terminplanung {
 		anz_pruef,      	// Anzahl der Prüfungen die verteilt werden sollen
 		maxgen;				// Maximale Anzahl der Gene => Anzahl der Prüfungen
 		long maxgenera;		// maximal erlaubte Zahl der Generationen
-	
+
 	public static void main(String[] args) {
+		
+	}
+	
+	public void eingabe(){
 		
 	}
 	
