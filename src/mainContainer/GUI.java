@@ -23,7 +23,6 @@ public class GUI {
 	private JTextField textField_2;
 	private Button button;
 	private JLabel lblErgebnis;
-	public static String wert1 ="22";
 	private JLabel lblNewLabel_4;
 
 	/**
@@ -105,10 +104,9 @@ public class GUI {
 		button = new Button("Start");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				wert1 = textField.getText();
-				lblNewLabel_4.setText(wert1);
-				textField_1.getText();
-				textField_2.getText();
+				setMaxgen(textField.getText());
+				setAnz_pruef(textField_1.getText());
+				setMaxgenera(textField_2.getText());
 			}
 		});
 		springLayout.putConstraint(SpringLayout.NORTH, button, 134, SpringLayout.NORTH, frame.getContentPane());
