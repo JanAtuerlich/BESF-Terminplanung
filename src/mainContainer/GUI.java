@@ -3,20 +3,15 @@ package mainContainer;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.BoxLayout;
 import javax.swing.JLabel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.JScrollBar;
 import java.awt.Button;
 import javax.swing.SpringLayout;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.util.Arrays;
-
-import javax.swing.JTable;
 import javax.swing.JButton;
+import javax.swing.JTable;
 
 public class GUI {
 
@@ -34,6 +29,7 @@ public class GUI {
 	private JLabel lblNewLabel_6;
 	private JLabel lblTermine;
 	private JLabel lblNewLabel_7;
+	private JTable table_1;
 	/**
 	 * Launch the application.
 	 */
@@ -139,7 +135,7 @@ public class GUI {
 		lblNewLabel_4 = new JLabel();
 		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_4, 0, SpringLayout.NORTH, lblErgebnis);
 		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_4, 6, SpringLayout.EAST, lblErgebnis);
-		lblNewLabel_4.setText("New Label");
+		lblNewLabel_4.setText("");
 		frame.getContentPane().add(lblNewLabel_4);
 		
 		JButton btnNewButton = new JButton("Tabelle");
@@ -179,7 +175,7 @@ public class GUI {
 				}
 				fields[fields.length-1]= "Strafpunkte";
 						
-				JTableUI myExample = new JTableUI( "Terminserien im Überblick", fields, pivot);
+				JTableUI table = new JTableUI( "Terminserien im Überblick", fields, pivot, evolution.getBestleb());
 
 			}
 		});
@@ -192,7 +188,7 @@ public class GUI {
 		springLayout.putConstraint(SpringLayout.EAST, lblNewLabel_5, 0, SpringLayout.EAST, lblErgebnis);
 		frame.getContentPane().add(lblNewLabel_5);
 		
-		lblNewLabel_6 = new JLabel("New label");
+		lblNewLabel_6 = new JLabel("");
 		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_6, 0, SpringLayout.NORTH, lblNewLabel_5);
 		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_6, 6, SpringLayout.EAST, lblNewLabel_5);
 		frame.getContentPane().add(lblNewLabel_6);
@@ -202,10 +198,16 @@ public class GUI {
 		springLayout.putConstraint(SpringLayout.EAST, lblTermine, 0, SpringLayout.EAST, lblErgebnis);
 		frame.getContentPane().add(lblTermine);
 		
-		lblNewLabel_7 = new JLabel("New label");
+		lblNewLabel_7 = new JLabel("");
 		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_7, 0, SpringLayout.WEST, lblNewLabel_4);
 		springLayout.putConstraint(SpringLayout.SOUTH, lblNewLabel_7, 0, SpringLayout.SOUTH, lblTermine);
 		frame.getContentPane().add(lblNewLabel_7);
+		
+		table_1 = new JTable();
+		table_1.setDragEnabled(true);
+		springLayout.putConstraint(SpringLayout.SOUTH, table_1, 0, SpringLayout.SOUTH, lblNewLabel_5);
+		springLayout.putConstraint(SpringLayout.EAST, table_1, 0, SpringLayout.EAST, lblNewLabel_3);
+		frame.getContentPane().add(table_1);
 		
 	}
 }
